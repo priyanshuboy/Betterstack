@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    /* Language and Environment */
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",            // ✅ Needed to support exports subpaths like 'store/client'
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+
+    /* Output (optional) */
+    "outDir": "dist",
+    "declaration": true,
+    "emitDeclarationOnly": false,
+
+    /* Monorepo-friendly baseUrl */
+    "baseUrl": ".",                           // Helpful in workspace setups
+
+    /* Optional but useful for IDE autocomplete/testing */
+    "composite": true                         // Enable if using project references
+  },
+  "include": ["./**/*.ts"],
+  "exclude": ["node_modules", "dist"]
+}
