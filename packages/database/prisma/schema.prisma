@@ -23,7 +23,8 @@ model User {
 
 model Website{
  
-id      String @id @default(uuid())
+id      String @id @default(uuid()) 
+user_id  String
 Url     String
 Time    DateTime
 Ticks    WebsiteTick[]
@@ -44,6 +45,7 @@ model WebsiteTick{
   website           Website   @relation(fields: [website_id] ,references: [id])
   website_id        String
   region_id         String
+  CreatedAt         DateTime  @default(now())
 }
 
 enum WebsiteStatus {

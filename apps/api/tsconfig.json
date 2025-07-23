@@ -2,8 +2,8 @@
   "compilerOptions": {
     /* Language and Environment */
     "target": "ES2022",                     // Modern JS target
-    "module": "ESNext",                     // Required for modern exports
-    "moduleResolution": "bundler",          // ✅ Fixes `store/client` resolution
+    "module": "node16",                     // Required for modern exports
+    "moduleResolution": "node16",          // ✅ Fixes `store/client` resolution
     "esModuleInterop": true,                // For compatibility with CommonJS modules
     "forceConsistentCasingInFileNames": true,
     "strict": true,
@@ -11,6 +11,7 @@
     "resolveJsonModule": true,              // Allows importing .json files
     "baseUrl": ".",                         // Optional: Helps with relative imports
     "outDir": "dist",                       // Output folder for compiled files
+    
 
     /* Optional: helps TypeScript resolve monorepo packages in IDEs */
     "paths": {

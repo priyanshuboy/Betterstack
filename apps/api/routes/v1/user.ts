@@ -5,6 +5,7 @@ import {z} from "zod"
 import bcrypt from "bcrypt"
 import jwt from 'jsonwebtoken'
 
+const secret = "priyanshu"
 const usersRouter = Router();
 
 usersRouter.post('/signup' , async (req,res)=>{
@@ -15,7 +16,7 @@ usersRouter.post('/signup' , async (req,res)=>{
     Password : z.string()
  })
 
- const Parsedata = UserDetails.safeparse(req.body)
+ const Parsedata = UserDetails.safeParse(req.body)
 
  if(!Parsedata.success){
     res.status(400).json({
@@ -38,7 +39,7 @@ usersRouter.post('/signup' , async (req,res)=>{
 
  const hashpassword = await bcrypt.hash(Password,10);
      
- prismaClient.user.create({
+ await prismaClient.user.create({
     data : {
          username : Username ,
          email    :  Email ,
@@ -49,7 +50,7 @@ usersRouter.post('/signup' , async (req,res)=>{
  res.status(201).json({
     mgs : "user created"
  })
-      
+     return 
 })
 
 
@@ -60,7 +61,7 @@ usersRouter.post('/signin' , async (req,res)=>{
      password : z.string()
  })
 
- const Parsedata = UserDetails.safeparse(req.body)
+ const Parsedata = UserDetails.safeParse(req.body)
 
  if(!Parsedata.success){
     res.status(400).json({
@@ -74,24 +75,33 @@ usersRouter.post('/signin' , async (req,res)=>{
  const Finduser = await prismaClient.user.findFirst({
     where : {email : Email}
  })
-
+  
  if(!Finduser){
     res.status(404).json({
-        mgs : 'please sign-up first'
+        mgs : 'please sign-up first or entered email is wrong'
     })
+    return
  }
+
+const Validation = await bcrypt.compare(password , Finduser.password);
+
+if(!Validation){
+   res.status(401).json({
+      mgs : "password is wrong"
+   })
+   return
+}
  
- const token = 
+ const token = jwt.sign({_id :Email} , secret ,{expiresIn : '1h'})
  
 
  res.status(200).json({
-    mgs : "loged-in"
+    mgs : "loged-in" ,
+    token : token
  })
-      
+      return
 })  
       
-
-
 
 
 export default usersRouter;
