@@ -50,6 +50,17 @@ websiteRouter.get('/status/:websiteid' , async (req:Fixeddata,res)=>{
 
               }
     })
+   if(!website){
+    res.status(404).json({
+        mgs : "no website found"
+    })
+    return
+   }
+
+    res.status(200).json({
+        website
+    })
+
 })
 
 export default websiteRouter;

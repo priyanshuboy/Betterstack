@@ -92,7 +92,7 @@ if(!Validation){
    return
 }
  
- const token = jwt.sign({_id :Email} , secret ,{expiresIn : '1h'})
+ const token = jwt.sign({_id :Finduser.id} , secret ,{expiresIn : '1h'})
  
 
  res.status(200).json({
