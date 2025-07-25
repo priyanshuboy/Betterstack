@@ -8,15 +8,21 @@
     "start": "node dist/index.js",
     "build": "tsc"
   },
+      "peerDependencies": {
+    "store": "*" ,
+     "redisstream" : "*"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "packageManager": "pnpm@10.12.1",
+  "packageManager": "pnpm@9.0.0",
   "devDependencies": {
     "@types/redis": "^4.0.11",
     "ts-node": "^10.9.2",
     "tsx": "^4.20.3",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+      "store": "workspace:*",
+       "redisstream": "workspace:*"
   },
   "dependencies": {
     "redis": "^5.6.0"

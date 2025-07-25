@@ -1,7 +1,7 @@
 import { AuthMiddleware, Fixeddata } from "middlewere";
 import { Router  } from "express";
 import { prismaClient } from "store/client";
-import {any, z} from 'zod'
+import {z} from 'zod'
 
 
 
